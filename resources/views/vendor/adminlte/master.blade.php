@@ -23,8 +23,14 @@
     @yield('adminlte_css_pre')
 
     {{-- Base Stylesheets --}}
+    @php
+        function replaceHttpWithHttps(string $url){
+            return str_replace('http://', 'https://', $url);
+        }
+        $asset=replaceHttpWithHttps($asset);
+    @endphp
     @if(!config('adminlte.enabled_laravel_mix'))
-        <link rel="stylesheet" href="('vendor/fontawesome-free/css/all.min.css')">
+        <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
         <link rel="stylesheet" href="{{ asset('vendor/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
         <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.min.css') }}">
 
